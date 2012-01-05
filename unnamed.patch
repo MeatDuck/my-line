@@ -1,0 +1,60 @@
+Index: My line.iml
+===================================================================
+--- My line.iml	(revision )
++++ My line.iml	(revision )
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" exported="" name="lib" level="project" />
++    <orderEntry type="library" exported="" name="2" level="project" />
++  </component>
++</module>
++
+Index: src/myline/server/security/SecurityConstants.java
+===================================================================
+--- src/myline/server/security/SecurityConstants.java	(revision 54)
++++ src/myline/server/security/SecurityConstants.java	(revision )
+@@ -4,24 +4,24 @@
+ 	//security
+ 	
+ 	//PRODUCT
+-	public static final String HASH_PROD = "ULQh0oJslSjrYUb3Q3pNmngAGbBGdcDBgCnrsHo";
+-	public static final String KEY_PROD = "MbHi4HRuLy2HqPgHQqo3w";
++	public static final String HASH_PROD = "";
++	public static final String KEY_PROD = "";
+ 	
+ 	//DEBUG
+-	public static final String HASH_TEST = "BXklGgcwqSX6SqZvBalD5qCP8gJdGuFycymdmd3CM";
+-	public static final String KEY_TEST = "yvf0OPoFsz49DVh7jMYkbQ";
++	public static final String HASH_TEST = "";
++	public static final String KEY_TEST = "";
+ 	
+-	public static final String API_ID = "2037135";
+-	public static final String API_SECRET = "YkdXj8floD7BBRwinGpW";
++	public static final String API_ID = "";
++	public static final String API_SECRET = "";
+ 	
+ 	//bit.ly
+-	public static final String SHORT_API_LOGIN = "aahomchenko";
+-	public static final String SHORT_API_KEY = "R_ccb2ea5249f6afc97785498b71c8192b";
++	public static final String SHORT_API_LOGIN = "";
++	public static final String SHORT_API_KEY = "";
+ 	
+ 	//nonsecurity
+-	public static final String NONPAS_USER = "13123123123";
+-	public static final String NONPAS_SECRET_HASH = "69252cc453931a2e62fa4d409299467a";
++	public static final String NONPAS_USER = "";
++	public static final String NONPAS_SECRET_HASH = "";
+ 	
+-	public static final String NONPAS_USER2 = "13123123124";
+-	public static final String NONPAS_SECRET_HASH2 = "69252cc453931a2e62fa4d409299467a";
++	public static final String NONPAS_USER2 = "";
++	public static final String NONPAS_SECRET_HASH2 = "";
+ }

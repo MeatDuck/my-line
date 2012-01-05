@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../appengine-java-sdk-1.4.2/lib/appengine-tools-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../appengine-java-sdk-1.4.2/lib/shared/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../appengine-java-sdk-1.4.2/lib/shared/appengine-local-runtime-shared.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../appengine-java-sdk-1.4.2/lib/shared/el-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../appengine-java-sdk-1.4.2/lib/shared/jsp-api.jar!/" />
+      <root url="file://$PROJECT_DIR$/war/WEB-INF/lib" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/appengine-api-1.0-sdk-1.5.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/twitter4j-core-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/datanucleus-core-1.1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/jdo2-api-2.3-eb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/datanucleus-appengine-1.0.8.final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/bitlyj-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/jsr107cache-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/gwt-servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/appengine-api-labs-1.5.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/appengine-jsr107cache-1.5.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+  
+  <!-- Servlets -->
+
+  <servlet>
+    <servlet-name>gettingServlet</servlet-name>
+    <servlet-class>myline.server.GettingMessagesServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>gettingServlet</servlet-name>
+    <url-pattern>/my_line/get</url-pattern>
+  </servlet-mapping>
+  
+<servlet>
+    <servlet-name>_ah_sessioncleanup</servlet-name>
+
+ <servlet-class>com.google.apphosting.utils.servlet.SessionCleanupServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>_ah_sessioncleanup</servlet-name>
+    <url-pattern>/_ah/sessioncleanup</url-pattern>
+  </servlet-mapping>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>session-cleanup</web-resource-name>
+      <url-pattern>/_ah/sessioncleanup</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint> 
+
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>My_line.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
