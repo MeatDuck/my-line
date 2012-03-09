@@ -41,6 +41,7 @@ public class ClientConstants {
 	//temp
 	public static final int MAX_MESSAGE_LENGTH = 140;
 	public static final String LOCAL_ADDRESS_HOST = "127.0.0.1";
+	public static final Integer TIMER_CALL_TIME = 60 * 1000;
 	
 	
 	

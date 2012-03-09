@@ -1,0 +1,8 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:import field='myline.shared.ClientConstants.LINK_NAME'/>	
+		<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" styleName="label_center">
+			<g:Anchor ui:field="link" target="_top" styleName="label_center a" text="{LINK_NAME}"></g:Anchor>
+		</g:HorizontalPanel>
+</ui:UiBinder> 

@@ -80,8 +80,6 @@ public class SessionManager {
 						session.setAttribute(ClientConstants.ACC_TOKEN + "_" + access.getUid(), token.getToken());
 						session.setAttribute(ClientConstants.ACC_SECRET + "_" + access.getUid(), token.getTokenSecret());
 				    }
-				}else{
-					return null;
 				}
 			}catch(JDOObjectNotFoundException e){
 				log.info("no token in db");

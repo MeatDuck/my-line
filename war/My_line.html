@@ -4,11 +4,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link type="text/css" rel="stylesheet" href="My_line.css">
     <title>Твиттеришко</title>
-    <script type="text/javascript" language="javascript" src="my_line/my_line.nocache.js"></script>
+    <script type="text/javascript" src="my_line/my_line.nocache.js"></script>
   </head>
   <body>
-<script type="text/javascript" language="javascript" src="http://vkontakte.ru/js/api/xd_connection.js" ></script>
-<script type="text/javascript" language="javascript">
+<script type="text/javascript" src="http://vkontakte.ru/js/api/xd_connection.js" ></script>
+<script type="text/javascript">
 function fixSize(){
 if(window.name == "") return false;
 var cur_height = 0;
@@ -40,9 +40,9 @@ function resizeWindow() {
 }
 
 function sendMessage(user, message){
-/**
+
 console.log(user + " " +  message);
-**/
+
 VK.init(function() {
 	VK.api('wall.post', {message: message},function(data) {
 		if(data.error) {}

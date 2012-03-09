@@ -23,7 +23,7 @@ public class My_line implements EntryPoint {
 				
 		access = new Access(user_id, auth_key);
 		Registry.getInctance().setKey("access", access);
-		
+
 		if(Cookies.getCookie("sendtowall") != null){
 			Registry.getInctance().setKey("sendtowall", Cookies.getCookie("sendtowall").equals("true"));
 		}else{

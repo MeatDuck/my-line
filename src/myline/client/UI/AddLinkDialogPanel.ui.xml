@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:import field='myline.shared.ClientConstants.cwDialogBoxDetails'/>
+	<ui:import field='myline.shared.ClientConstants.cwDialogBoxClose'/>
+	<g:VerticalPanel spacing="4">
+		<g:Cell horizontalAlignment="ALIGN_CENTER">
+			<g:Label text="{cwDialogBoxDetails}"/>
+		</g:Cell>
+		<g:TextBox styleName="linkenter" ui:field="linkTextBox" focus="true"/>
+		<g:Cell horizontalAlignment="ALIGN_RIGHT">
+			<g:Button text="{cwDialogBoxClose}" ui:field="okButton"/>
+		</g:Cell>
+	</g:VerticalPanel>
+</ui:UiBinder> 

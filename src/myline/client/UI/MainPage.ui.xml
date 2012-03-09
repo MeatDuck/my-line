@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:myline.client.UI">
+	<ui:import field='myline.shared.ClientConstants.SETTINGS_LABEL'/>
+	<g:FlowPanel width="520px">
+		<g:VerticalPanel styleName="settings_container" horizontalAlignment="ALIGN_RIGHT" width="520">
+			<g:Image url="images/logo.png" styleName="logo_padding"/>
+		</g:VerticalPanel>
+		<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" width="497px" height="29px">
+			<g:Cell horizontalAlignment="ALIGN_RIGHT">
+				<g:Button ui:field="settingsButton" text="{SETTINGS_LABEL}" title="{SETTINGS_LABEL}" styleName="gwt-Button settings"/>
+			</g:Cell>
+		</g:HorizontalPanel>
+		<p1:SendTwitPanel ui:field="sendTwitPanel"/>		
+		<g:FlowPanel ui:field="twitItems"/>
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -69,6 +69,7 @@ h1 {
     font-size: 13px;
     padding: 10px 20px;
     position: relative;
+    width: 520px;
 }
 
 .tweet-image {
@@ -135,6 +136,7 @@ padding-top: 5px;
 	color: #0084B4;
 	text-decoration: none;
 	font-size: 11px;
+	cursor: pointer;
 }
 .clearBoth { clear:both; }
 
@@ -180,7 +182,7 @@ div.inline { float:right;}
 background-image:url('/images/loading.png');
 background-repeat:no-repeat;
 background-position:left top;
-width: 608px; height: 314px;
+width: 530px; height: 314px;
 }
 
 .center{
@@ -201,19 +203,40 @@ background-repeat:no-repeat;
 background-position:left top;
 }
 .logo_padding{
-	padding-left: 210px; 
-	padding-top: 20px; 
+	padding-top: 20px;
 	padding-bottom: 20px;
+	padding-left: 210px;
 }
-.h27{height: 27px;}
+.gwt-Button .h27{height: 27px;}
 
 .ml80{margin-left: 80px !important;}
 
 .label_center{
-padding-top: 200px; padding-left: 110px;
+padding-top: 200px; 
 margin: auto;
 }
 
 .label_center a{
 font: bold 12pt Arial;color: #464646 !important;
+}
+.gwt-Button .ml80 {
+margin-left: 80px !important;
+}
+.gwt-PushButton .inline {
+ float:right;
+}
+.gwt-Button .inline {
+ float:right;
+}
+.gwt-Button .settings {
+margin-left: 180px !important;
+}
+.link_bold {
+    color: #2276BB;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 6px; 
+    padding-right: 6px;
+    font-weight: bold;
 }

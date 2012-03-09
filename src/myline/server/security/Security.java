@@ -17,6 +17,8 @@ public class Security {
 		if(acc.getUid() == null || acc.getSign() == null){
 			throw new ServiceException("Bad vkontakte creditails, opened not in vkontakte");
 		}
+		
+		log.info("[" + acc.getUid().equals(SecurityConstants.NONPAS_USER) + ", " + acc.getSign().equals(SecurityConstants.NONPAS_SECRET_HASH) + "]");
 		if(acc.getUid().equals(SecurityConstants.NONPAS_USER) && 
 		   acc.getSign().equals(SecurityConstants.NONPAS_SECRET_HASH)
 		   ){

@@ -18,6 +18,7 @@ import myline.server.security.SecurityConstants;
 import myline.shared.ClientConstants;
 import myline.shared.exceptions.ServiceException;
 import myline.shared.network.MessageContaner;
+import myline.shared.network.Message;
 import myline.shared.network.UrlContaner;
 import myline.shared.security.Access;
 import twitter4j.Paging;
@@ -107,7 +108,6 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			session.setAttribute(ClientConstants.REQUEST_TOKEN, requestToken.getToken());
 			session.setAttribute(ClientConstants.REQUEST_HASH, requestToken.getTokenSecret());
 			log.info("try save RequestToken to session = " + session.getAttribute(ClientConstants.REQUEST_TOKEN) + " & hash = " + session.getAttribute(ClientConstants.REQUEST_HASH));
-			contaner.setLabeString(ClientConstants.LINK_NAME);
 			contaner.setUrl(requestToken.getAuthorizationURL());
 		}catch(TwitterException e){
 			throw new ServiceException(e);
@@ -118,10 +118,6 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Boolean isAuth(Access vkToken) throws ServiceException {
 		log.info("isAuth started with token = " + vkToken + " & uid = " + vkToken.getUid());
-		if(vkToken == null){
-			log.info("][acker detected");
-			return false;
-		}
 		
 		//check if already auth & try to verify
 		HttpSession session = getThreadLocalRequest().getSession(true);		 

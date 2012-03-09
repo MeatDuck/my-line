@@ -7,28 +7,25 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class MessageContaner implements IsSerializable {
-	@SuppressWarnings("unchecked")
-	private List<List> messages = new ArrayList<List>();
+	private List<Message> messages = new ArrayList<Message>();
 	
-	@SuppressWarnings("unchecked")
-	public List<List> getMessages(){
+	public MessageContaner(){
+		
+	}
+	
+	public List<Message> getMessages(){
 		return messages;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void addMessage(String nick, String user, String url_img, String message, long l, boolean b, Date date){
-		List tmp = new ArrayList();
-		tmp.add(nick);
-		tmp.add(user);
-		tmp.add(url_img);
-		tmp.add(message);
-		tmp.add(String.valueOf(l));
-		tmp.add(b);
-		tmp.add(String.valueOf(date.getTime()));
+	public void addMessage(String nick, String user, String url_img, String message, long id, boolean isEditable, Date date){
+		Message tmp = new Message();
+		tmp.setNick(nick);
+		tmp.setUser(user);
+		tmp.setUrl_img(url_img);
+		tmp.setMessage(message);
+		tmp.setId(id);
+		tmp.setIsEditable(isEditable);
+		tmp.setDate(date);
 		getMessages().add(tmp);
-	}
-	
-	public void addContainer(MessageContaner container){
-		this.getMessages().add(container.getMessages());
 	}
 }
