@@ -85,6 +85,7 @@ h1 {
 .tweet-user-name{
     color: #999999;
     font-size: 12px;
+    padding-left: 10px;    
 }
 
 .tweet-text {
