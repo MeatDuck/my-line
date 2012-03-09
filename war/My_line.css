@@ -240,3 +240,6 @@ margin-left: 180px !important;
     padding-right: 6px;
     font-weight: bold;
 }
+.overflow_vis {
+overflow: visible;
+}

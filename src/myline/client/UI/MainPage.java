@@ -14,11 +14,11 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.FlowPanel;
 
 public class MainPage extends Composite {
 
@@ -27,13 +27,15 @@ public class MainPage extends Composite {
 	@UiField Button settingsButton;
 	@UiField SendTwitPanel sendTwitPanel;
 	@UiField public FlowPanel twitItems;
+	@UiField ErrorNotificationMole errorNotificationPanel;
 	DialogBox settingsDB; 
 
 	interface MainPageUiBinder extends UiBinder<Widget, MainPage> {
 	}
 
-	public MainPage() {
+	public MainPage() {		
 		initWidget(uiBinder.createAndBindUi(this));
+		sendTwitPanel.setMainPage(this);
 		settingsDB =  createSettingsDialogBox();
 	}
 	
@@ -98,5 +100,10 @@ public class MainPage extends Composite {
 	@UiHandler("settingsButton")
 	void onSettingsButtonClick(ClickEvent event) {
 		settingsDB.show();
+	}
+	
+	public void showError(String message){
+		errorNotificationPanel.setText(message);
+		errorNotificationPanel.show();
 	}
 }

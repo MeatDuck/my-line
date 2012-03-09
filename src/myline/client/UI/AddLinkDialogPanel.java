@@ -2,6 +2,7 @@ package myline.client.UI;
 
 import myline.client.service.GettingService;
 import myline.client.service.GettingServiceAsync;
+import myline.shared.ClientConstants;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -63,6 +64,7 @@ public class AddLinkDialogPanel extends Composite  {
 				
 				@Override
 				public void onFailure(Throwable caught) {	
+					twitPanel.getMainPage().showError(ClientConstants.ADD_LINK_ERROR_MESSAGE);	
 				}
 			});
 

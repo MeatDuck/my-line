@@ -36,6 +36,13 @@ public class DecorationManager {
 		}
 	};	
 	
+	private Timer refreshTimer = new Timer() {
+		    @Override
+		    public void run() {
+		    	DecorationManager.getInstance().refresh();
+		    }
+		  };
+	
 	
 	private DecorationManager(){		
 
@@ -168,8 +175,13 @@ public class DecorationManager {
 			
 			@Override
 			public void onFailure(Throwable e) {
-				showError(e);				
+				mainPage.showError(ClientConstants.UPDATE_LINE_ERROR_MESSAGE);
+				//showError(e);				
 			}
 		});
 	}
+	
+	public void refresh(int delayMillis){
+		refreshTimer.schedule(delayMillis);
+	}	
 }

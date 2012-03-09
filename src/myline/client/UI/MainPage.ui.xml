@@ -3,6 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:myline.client.UI">
 	<ui:import field='myline.shared.ClientConstants.SETTINGS_LABEL'/>
 	<g:FlowPanel width="520px">
+		<p1:ErrorNotificationMole ui:field="errorNotificationPanel" width="508" height="20" styleName="overflow_vis" />
 		<g:VerticalPanel styleName="settings_container" horizontalAlignment="ALIGN_RIGHT" width="520">
 			<g:Image url="images/logo.png" styleName="logo_padding"/>
 		</g:VerticalPanel>

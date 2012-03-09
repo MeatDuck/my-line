@@ -41,6 +41,7 @@ public class SendTwitPanel extends Composite {
 	DialogBox dialogBox = createGetLinkDialogBox();
 
 	private Access acc;
+	private MainPage page;
 	
 	interface SendTwitPanelUiBinder extends UiBinder<Widget, SendTwitPanel> {
 	}
@@ -55,6 +56,14 @@ public class SendTwitPanel extends Composite {
 	    dialogBox.setAnimationEnabled(true);
 	    dialogBox.setPopupPosition(120, 90);
 	    dialogBox.addStyleName("dialog");
+	}
+	
+	public void setMainPage(MainPage mp){
+		page = mp;
+	}
+	
+	public MainPage getMainPage(){
+		return page;
 	}
 
 	@UiHandler("textArea")
@@ -88,15 +97,15 @@ public class SendTwitPanel extends Composite {
 				
 				@Override
 				public void onSuccess(Void result) {
-					textArea.setText("");
+					textArea.setText("");					
+					DecorationManager.getInstance().refresh(ClientConstants.TIMER_REFESH_SENDER_TIME);
 					stopLoading(messagePanel);
-					DecorationManager.getInstance().refresh();	
 				}
 				
 				@Override
 				public void onFailure(Throwable e) {
 					stopLoading(messagePanel);
-					e.printStackTrace();						
+					page.showError(ClientConstants.ADD_LINE_ERROR_MESSAGE);					
 				}
 			});
 		}

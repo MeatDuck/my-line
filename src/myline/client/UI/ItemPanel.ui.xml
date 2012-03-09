@@ -12,7 +12,7 @@
 			<g:Label text="New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label" styleName="tweet-text" ui:field="message"/>
 			<g:FlowPanel height="13px">
 				<g:Label styleName="dateL" ui:field="date_label" text="13:55:58" />
-				<g:Anchor text="{DELETE_TEXT}" styleName="delete" visible="false" ui:field="deleteAnchor"/>
+				<g:Anchor styleName="delete" ui:field="deleteAnchor" visible="false"><span><i></i><b>Удалить</b></span></g:Anchor>
 			</g:FlowPanel>
 		</g:FlowPanel>
 	</g:FlowPanel>

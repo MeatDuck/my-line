@@ -24,7 +24,10 @@ public class ClientConstants {
 	public static final String setDialogBoxDetails = "Настройки статусов";
 	public static final String sytDialogBoxDetails = "Синхронизация";
 	public static final String sytDialogCook = "Включите cookies в вашем браузере";
-	public static final String syerrialogBoxDetails = "Ошибка синхронизации";
+	public static final String UPDATE_LINE_ERROR_MESSAGE = "Ошибка загрузки твитов";
+	public static final String ADD_LINE_ERROR_MESSAGE = "Ошибка добавления твитов";
+	public static final String ADD_LINK_ERROR_MESSAGE = "Ошибка получения короткой ссылки";
+	public static final String DELETE_TWIT_ERROR_MESSAGE = "Ошибка удаления твита";
 	public static final String synButtonLabel = "Начать";
 	public static final String syn1Label = "Импорт";
 	public static final String syn2Label = "сообщений";
@@ -42,6 +45,8 @@ public class ClientConstants {
 	public static final int MAX_MESSAGE_LENGTH = 140;
 	public static final String LOCAL_ADDRESS_HOST = "127.0.0.1";
 	public static final Integer TIMER_CALL_TIME = 60 * 1000;
+	public static final Integer TIMER_ERROR_SHOW_TIME = 3 * 1000;
+	public static final Integer TIMER_REFESH_SENDER_TIME = 3 * 1000;
 	
 	
 	

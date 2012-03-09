@@ -1,0 +1,9 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+			<g:HorizontalPanel width="509px" height="20px">
+				<g:Cell horizontalAlignment="ALIGN_RIGHT" height="">
+					<g:NotificationMole animationDuration="1000" message="" ui:field="errorMessage" height="20px" width="509px"/>
+				</g:Cell>
+			</g:HorizontalPanel>
+</ui:UiBinder> 

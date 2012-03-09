@@ -7,6 +7,7 @@ import java.util.List;
 import myline.client.managers.DecorationManager;
 import myline.client.service.GettingService;
 import myline.client.service.GettingServiceAsync;
+import myline.shared.ClientConstants;
 import myline.shared.Registry;
 import myline.shared.network.Message;
 import myline.shared.security.Access;
@@ -87,7 +88,7 @@ public class ItemPanel extends Composite {
 			
 			@Override
 			public void onFailure(Throwable e) {
-				e.printStackTrace();							
+				mainPage.showError(ClientConstants.DELETE_TWIT_ERROR_MESSAGE);								
 			}
 		});		
 	}
