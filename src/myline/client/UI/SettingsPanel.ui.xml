@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:import field='myline.shared.ClientConstants.setDialogBoxDetails'/>
+	<ui:import field='myline.shared.ClientConstants.setCheckBoxDetails'/>	
+	<ui:import field='myline.shared.ClientConstants.sytDialogCook'/>
+	<ui:import field='myline.shared.ClientConstants.cwDialogBoxClose'/>	
+	<ui:import field='myline.shared.ClientConstants.LOGOUT_LABEL'/>	
+	
+	<g:VerticalPanel spacing="4">
+		<g:InlineLabel text="{setDialogBoxDetails}" title="{setDialogBoxDetails}" horizontalAlignment="ALIGN_LEFT"/>
+		<g:CheckBox text="{setCheckBoxDetails}" ui:field="sendToWallChb"/>
+		<g:InlineLabel text="{sytDialogCook}" horizontalAlignment="ALIGN_LEFT" ui:field="askCookieLabel"/>
+		<g:Cell horizontalAlignment="ALIGN_RIGHT">
+			<g:Button ui:field="closeButton" text="{cwDialogBoxClose}"/>
+		</g:Cell>
+	</g:VerticalPanel>
+</ui:UiBinder> 

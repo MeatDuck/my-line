@@ -1,23 +1,24 @@
 package myline.client.UI;
 
+import myline.client.managers.DecorationManager;
+import myline.client.service.GettingService;
+import myline.client.service.GettingServiceAsync;
 import myline.shared.ClientConstants;
 import myline.shared.Registry;
+import myline.shared.security.Access;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MainPage extends Composite {
@@ -28,12 +29,15 @@ public class MainPage extends Composite {
 	@UiField SendTwitPanel sendTwitPanel;
 	@UiField public FlowPanel twitItems;
 	@UiField ErrorNotificationMole errorNotificationPanel;
-	DialogBox settingsDB; 
+	@UiField Image image;
+	DialogBox settingsDB;
+	private Access acc; 
 
 	interface MainPageUiBinder extends UiBinder<Widget, MainPage> {
 	}
 
 	public MainPage() {		
+		this.acc = (Access) Registry.getInctance().getValue("access");
 		initWidget(uiBinder.createAndBindUi(this));
 		sendTwitPanel.setMainPage(this);
 		settingsDB =  createSettingsDialogBox();
@@ -42,7 +46,8 @@ public class MainPage extends Composite {
 	//sys panel on click settings box
 	private DialogBox createSettingsDialogBox() {
 	    // Create a dialog box and set the caption text
-	    final DialogBox dialogBox = new DialogBox();
+		DialogBox dialogBox = new DialogBox();
+		
 		//setDialogBox
 	    dialogBox.setGlassEnabled(true);
 	    dialogBox.setAnimationEnabled(true);
@@ -52,48 +57,22 @@ public class MainPage extends Composite {
 	    dialogBox.setText(ClientConstants.setDialogBoxCaption);
 
 	    // Create a table to layout the content
-	    VerticalPanel dialogContents = new VerticalPanel();
-	    dialogContents.setSpacing(4);
+	    SettingsPanel dialogContents = new SettingsPanel(dialogBox);
 	    dialogBox.setWidget(dialogContents);
 	    
-	    final CheckBox setCheck = new CheckBox("Отправлять статус на стену");
 	    if(Cookies.isCookieEnabled()){
-	    	// Add some text to the top of the dialog
-	    	HTML details = new HTML(ClientConstants.setDialogBoxDetails);
-	    	dialogContents.add(details);
-	    	dialogContents.setCellHorizontalAlignment(details, HasHorizontalAlignment.ALIGN_LEFT);
-
-	    	setCheck.setEnabled(true);
+	    	dialogContents.askCookieLabel.setVisible(false);
+	    	dialogContents.sendToWallChb.setEnabled(true);
 	    	if(Registry.getInctance().getValue("sendtowall").equals(true)){
-	    		setCheck.setValue(true);
+	    		dialogContents.sendToWallChb.setValue(true);
 	    	}else{
-	    		setCheck.setValue(false);
+	    		dialogContents.sendToWallChb.setValue(false);
 	    	}
-		    dialogContents.add(setCheck);
 	    }else{
-	    	HTML details = new HTML(ClientConstants.sytDialogCook);
-	    	dialogContents.add(details);
-	    	dialogContents.setCellHorizontalAlignment(details, HasHorizontalAlignment.ALIGN_LEFT);
+	    	dialogContents.askCookieLabel.setVisible(true);
 	    }
 	    
-	    // Add a close button at the bottom of the dialog
-	    Button closeButton = new Button(
-	    		ClientConstants.cwDialogBoxClose, new ClickHandler() {
-	          public void onClick(ClickEvent event) {
-	                dialogBox.hide();
-	                if(setCheck.getValue()){
-	                	Cookies.setCookie("sendtowall", "true");
-	                	Registry.getInctance().setKey("sendtowall", true);
-	                }else{
-	                	Cookies.setCookie("sendtowall", "false");
-	                	Registry.getInctance().setKey("sendtowall", false);
-	                }
-	          }
-        });
-	    dialogContents.add(closeButton);
-        dialogContents.setCellHorizontalAlignment(closeButton, HasHorizontalAlignment.ALIGN_RIGHT);
-
-        // Return the dialog box
+	    // Return the dialog box
 	    return dialogBox;
 	}
 	
@@ -105,5 +84,21 @@ public class MainPage extends Composite {
 	public void showError(String message){
 		errorNotificationPanel.setText(message);
 		errorNotificationPanel.show();
+	}
+	
+	@UiHandler("image")
+	void onImageClick(ClickEvent event) {
+		GettingServiceAsync custService = (GettingServiceAsync) GWT.create(GettingService.class);
+		custService.logOut(acc, new AsyncCallback<Void>() {
+			@Override
+			public void onSuccess(Void result) {
+				DecorationManager.getInstance().showLogin();
+			}
+			
+			@Override
+			public void onFailure(Throwable e) {
+				showError(ClientConstants.LOGOUT_ERROR_MESSAGE);					
+			}
+		});
 	}
 }

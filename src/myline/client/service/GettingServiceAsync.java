@@ -27,4 +27,6 @@ public interface GettingServiceAsync {
 	void getAllMessages(Access value, Integer count,
 			AsyncCallback<MessageContaner> asyncCallback);
 
+	void logOut(Access acc, AsyncCallback<Void> asyncCallback);
+
 }

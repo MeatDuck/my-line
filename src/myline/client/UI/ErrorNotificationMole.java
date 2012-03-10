@@ -44,7 +44,7 @@ public class ErrorNotificationMole extends Composite implements HasText {
 	}
 	
 	public void show(){
-		errorMessage.show("eferferf");
+		errorMessage.show();
 		showTimer.schedule(ClientConstants.TIMER_ERROR_SHOW_TIME);
 	}
 	

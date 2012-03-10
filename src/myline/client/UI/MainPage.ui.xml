@@ -5,7 +5,10 @@
 	<g:FlowPanel width="520px">
 		<p1:ErrorNotificationMole ui:field="errorNotificationPanel" width="508" height="20" styleName="overflow_vis" />
 		<g:VerticalPanel styleName="settings_container" horizontalAlignment="ALIGN_RIGHT" width="520">
-			<g:Image url="images/logo.png" styleName="logo_padding"/>
+			<g:HorizontalPanel width="509px">
+				<g:Image url="images/logo.png" styleName="logo_padding"/>
+				<g:Image url="images/red_cross.png" styleName="closeImg" ui:field="image"/>
+			</g:HorizontalPanel>
 		</g:VerticalPanel>
 		<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" width="497px" height="29px">
 			<g:Cell horizontalAlignment="ALIGN_RIGHT">

@@ -18,7 +18,6 @@ import myline.server.security.SecurityConstants;
 import myline.shared.ClientConstants;
 import myline.shared.exceptions.ServiceException;
 import myline.shared.network.MessageContaner;
-import myline.shared.network.Message;
 import myline.shared.network.UrlContaner;
 import myline.shared.security.Access;
 import twitter4j.Paging;
@@ -32,8 +31,8 @@ import twitter4j.auth.RequestToken;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.rosaloves.bitlyj.Bitly;
-import com.rosaloves.bitlyj.Url;
 import com.rosaloves.bitlyj.Bitly.Provider;
+import com.rosaloves.bitlyj.Url;
 
 public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		GettingService {
@@ -157,7 +156,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			accessToken = twitter.getOAuthAccessToken(rtObj);
 			log.info("accessToken = " + accessToken.getToken());
 		} catch (TwitterException e) {
-			throw new ServiceException(e);
+			return false;
 		} catch (IllegalStateException e) {
 			throw new ServiceException(e);
 		}
@@ -279,6 +278,11 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		
 		
 		return contaner;
+	}
+
+	@Override
+	public void logOut(Access acc) throws ServiceException {
+		SessionManager.setRequest(getThreadLocalRequest()).logout(acc);		
 	}
 
 }

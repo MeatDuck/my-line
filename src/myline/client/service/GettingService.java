@@ -26,4 +26,6 @@ public interface GettingService extends RemoteService {
 	String takeShortLink(String str);
 	
 	int getStatusNumber(Access acc) throws ServiceException;
+	
+	void logOut(Access acc) throws ServiceException;
 }

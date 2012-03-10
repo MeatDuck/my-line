@@ -22,17 +22,21 @@ public class ClientConstants {
 	public static final String setDialogBoxCaption = "Настройки";
 	public static final String synDialogBoxCaption = "Синхронизация";
 	public static final String setDialogBoxDetails = "Настройки статусов";
+	public static final String setCheckBoxDetails = "Отправлять статус на стену";
 	public static final String sytDialogBoxDetails = "Синхронизация";
 	public static final String sytDialogCook = "Включите cookies в вашем браузере";
 	public static final String UPDATE_LINE_ERROR_MESSAGE = "Ошибка загрузки твитов";
 	public static final String ADD_LINE_ERROR_MESSAGE = "Ошибка добавления твитов";
 	public static final String ADD_LINK_ERROR_MESSAGE = "Ошибка получения короткой ссылки";
 	public static final String DELETE_TWIT_ERROR_MESSAGE = "Ошибка удаления твита";
+	public static final String LOGOUT_ERROR_MESSAGE = "Ошибка выхода";
 	public static final String synButtonLabel = "Начать";
 	public static final String syn1Label = "Импорт";
 	public static final String syn2Label = "сообщений";
 	public static final String WAIT_LABEL = "Подождите";
 	public static final String TWI_LABEL = "ТВИТТЕРишко";
+	public static final String LOGOUT_LABEL = "Зайти под другим twitter аккаунтом";
+	public static final String TOKEN_ERROR = "Токен не валиден";
 	
 	//const for def
 	public static final String REQUEST_TOKEN = "rt";

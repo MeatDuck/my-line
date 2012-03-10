@@ -152,4 +152,24 @@ public class SessionManager {
 			instance = new SessionManager(request);
 		return instance;
 	}
+
+	public void logout(Access acc2) throws ServiceException {
+		if(!Security.isValid(acc2)){
+			throw new ServiceException(ClientConstants.TOKEN_ERROR);
+		}
+		
+		PersistenceManager pm = PMF.getPersistenceManager();
+		try{
+			LocalAccessToken acc = (LocalAccessToken) pm.getObjectById(LocalAccessToken.class, acc2.getUid());
+			pm.deletePersistent(acc);
+			log.info("token deleted");
+		}catch(JDOObjectNotFoundException e){
+			log.info("no token exist in db, noting to delete");
+		}		
+		
+		session.removeAttribute(ClientConstants.ACC_TOKEN + "_" + acc2.getUid());
+		session.removeAttribute(ClientConstants.ACC_SECRET + "_" + acc2.getUid());
+		
+		this.map.remove(acc2.getUid());
+	}
 }

@@ -56,6 +56,7 @@ public class DecorationManager {
 	}
 	
 	public void showLogin(){
+		timer.cancel();
 		GettingServiceAsync custService = (GettingServiceAsync) GWT.create(GettingService.class);
 		custService.getInitiationURL(new AsyncCallback<UrlContaner>(){
 			
@@ -64,6 +65,7 @@ public class DecorationManager {
 				AuthorisePanel auth = new AuthorisePanel(result);
 				rootPannel.clear();
 				rootPannel.add(auth);	
+				rootPannel.setStyleName("loading");
 				DecorationManager.fixSize();
 			}
 			

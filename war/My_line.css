@@ -244,3 +244,6 @@ margin-left: 180px !important;
 .overflow_vis {
 overflow: visible;
 }
+.closeImg {
+cursor: pointer;
+}

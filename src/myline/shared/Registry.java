@@ -22,4 +22,10 @@ public class Registry {
 	public Object getValue(Object key){
 		return storage.get(key);
 	}
+	
+	public void removeKey(Object key){
+		if(storage.containsKey(key)){
+			storage.remove(key);
+		}
+	}
 }
