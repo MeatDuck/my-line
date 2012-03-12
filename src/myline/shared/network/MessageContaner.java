@@ -21,7 +21,7 @@ public class MessageContaner implements IsSerializable {
 		Message tmp = new Message();
 		tmp.setNick(nick);
 		tmp.setUser(user);
-		tmp.setUrl_img(url_img);
+		tmp.setUrlImg(url_img);
 		tmp.setMessage(message);
 		tmp.setId(id);
 		tmp.setIsEditable(isEditable);

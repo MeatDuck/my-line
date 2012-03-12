@@ -7,11 +7,11 @@
 		<g:FlowPanel styleName="messagePanel" ui:field="messagePanel">
 			<g:HorizontalPanel verticalAlignment="ALIGN_BOTTOM">
 				<g:Anchor text="New Label" styleName="link_bold" ui:field="name"/>
-				<g:Label text="New Label" styleName="tweet-user-name" ui:field="nick_label"/>
+				<g:Label text="New Label" styleName="tweet-user-name" ui:field="nickLabel"/>
 			</g:HorizontalPanel>
 			<g:Label text="New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label New Label" styleName="tweet-text" ui:field="message"/>
 			<g:FlowPanel height="13px">
-				<g:Label styleName="dateL" ui:field="date_label" text="13:55:58" />
+				<g:Label styleName="dateL" ui:field="dateLabel" text="13:55:58" />
 				<g:Anchor styleName="delete" ui:field="deleteAnchor" visible="false"><span><i></i><b>Удалить</b></span></g:Anchor>
 			</g:FlowPanel>
 		</g:FlowPanel>

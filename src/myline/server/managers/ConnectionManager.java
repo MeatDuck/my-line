@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import twitter4j.auth.AccessToken;
 
 
-public class ConnectionManager {
+public final class ConnectionManager {
 	private static final Logger log = Logger.getLogger(ConnectionManager.class.getName());
 	
 	static private ConnectionManager instance = null;

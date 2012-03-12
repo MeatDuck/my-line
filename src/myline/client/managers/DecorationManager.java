@@ -24,7 +24,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 
-public class DecorationManager {
+public final class DecorationManager {
 	static private DecorationManager instance = null;
 	final private RootPanel rootPannel = RootPanel.get("tweetsContainer");
 	final private MainPage mainPage = new MainPage();

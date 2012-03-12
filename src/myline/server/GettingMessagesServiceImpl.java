@@ -197,7 +197,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		}
 		
 		String regex = "^(http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-		if(!IsMatch(str, regex)){
+		if(!isMatch(str, regex)){
 			return str;
 		}
 		//check url
@@ -220,7 +220,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		} 
 	}
 	
-    private static boolean IsMatch(String s, String pattern) {
+    private static boolean isMatch(String s, String pattern) {
         try {
             Pattern patt = Pattern.compile(pattern);
             Matcher matcher = patt.matcher(s);
@@ -231,8 +231,8 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
     }
 
 	@Override
-	public MessageContaner getAllMessages(Access acc, Integer count) throws ServiceException {
-		if(count < 1){
+	public MessageContaner getAllMessages(Access acc, Integer numMessage) throws ServiceException {
+		if(numMessage < 1){
 			throw new ServiceException("Bad page numer");
 		}
 		
@@ -249,17 +249,17 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 				statuses.addAll(new ArrayList<Status>(twitter.getUserTimeline(pageing)));
 				page++;
 				pageing = new Paging(page);
-				if(statuses.size() >= count) break;
+				if(statuses.size() >= numMessage) break;
 			}
 		} catch (Exception e) {
 			//do nothing
 		}
-		count = Math.min(count, statuses.size());
+		Integer numLimit = Math.min(numMessage, statuses.size());
 		
 		int tempCount = 0;
 		MessageContaner contaner = new MessageContaner();
 		for (Iterator<Status> iterator = statuses.iterator(); iterator.hasNext();) {
-			if(tempCount >= count){
+			if(tempCount >= numLimit){
 				break;
 			}
 			Status status = (Status) iterator.next();

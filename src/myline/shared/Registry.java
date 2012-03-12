@@ -2,7 +2,7 @@ package myline.shared;
 
 import java.util.HashMap;
 
-public class Registry {
+public final class Registry {
 	private HashMap<Object, Object> storage = new HashMap<Object, Object>();
 	private static Registry instance;
 	

@@ -2,7 +2,6 @@ package myline.client.UI;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import myline.client.managers.DecorationManager;
 import myline.client.service.GettingService;
@@ -32,8 +31,8 @@ public class ItemPanel extends Composite {
 			.create(ItemPanelUiBinder.class);
 	@UiField Image avatar;
 	@UiField Anchor name;
-	@UiField Label nick_label;
-	@UiField Label date_label;
+	@UiField Label nickLabel;
+	@UiField Label dateLabel;
 	@UiField Label message;
 	@UiField FlowPanel messagePanel;
 	@UiField Anchor deleteAnchor;
@@ -45,9 +44,9 @@ public class ItemPanel extends Composite {
 
 	public ItemPanel( Message element, MainPage mainPage) {
 		initWidget(uiBinder.createAndBindUi(this));
-		avatar.setUrl(element.getUrl_img());
+		avatar.setUrl(element.getUrlImg());
 		name.setText(element.getNick());
-		nick_label.setText(element.getNick());
+		nickLabel.setText(element.getNick());
 		
 		DateTimeFormat df;
 		DateTimeFormat formatObj =  DateTimeFormat.getFormat("dd-MM-yyyy");
@@ -58,7 +57,7 @@ public class ItemPanel extends Composite {
 		}else{
 			df = DateTimeFormat.getFormat("HH:mm:ss dd-MM-yyyy");			
 		}		
-		date_label.setText(df.format(date));
+		dateLabel.setText(df.format(date));
 		
 		message.setText(element.getMessage());
 		

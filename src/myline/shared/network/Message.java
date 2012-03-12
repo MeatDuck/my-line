@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 public class Message  implements IsSerializable {
 	private String nick;
 	private String user;
-	private String url_img;
+	private String urlImg;
 	private String message; 
 	private long id;
 	private boolean isEditable; 
@@ -29,11 +29,11 @@ public class Message  implements IsSerializable {
 	public String getUser() {
 		return user;
 	}
-	public void setUrl_img(String url_img) {
-		this.url_img = url_img;
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
 	}
-	public String getUrl_img() {
-		return url_img;
+	public String getUrlImg() {
+		return urlImg;
 	}
 	public void setMessage(String message) {
 		this.message = message;

@@ -23,7 +23,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-public class SessionManager {
+public final class SessionManager {
 	private static final Logger log = Logger.getLogger(SessionManager.class.getName());
 	private static SessionManager instance = null;
 	public HttpSession session = null;
