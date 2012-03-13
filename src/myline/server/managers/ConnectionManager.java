@@ -8,7 +8,7 @@ import twitter4j.auth.AccessToken;
 
 
 public final class ConnectionManager {
-	private static final Logger log = Logger.getLogger(ConnectionManager.class.getName());
+	private static final Logger LOG = Logger.getLogger(ConnectionManager.class.getName());
 	
 	static private ConnectionManager instance = null;
 	private ConnectionManager(){
@@ -23,7 +23,7 @@ public final class ConnectionManager {
 	}
 
 	public Boolean isAuth(AccessToken token, String uid, HttpServletRequest request) {
-		log.info("AccessToken if null?  " + token);
+		LOG.info("AccessToken if null?  " + token);
 		if(token == null)
 			return false;
 		SessionManager.setRequest(request).setToken(token,uid);

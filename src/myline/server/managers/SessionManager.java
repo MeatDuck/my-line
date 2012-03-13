@@ -24,7 +24,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 public final class SessionManager {
-	private static final Logger log = Logger.getLogger(SessionManager.class.getName());
+	private static final Logger LOG = Logger.getLogger(SessionManager.class.getName());
 	private static SessionManager instance = null;
 	public HttpSession session = null;
 	private static final PersistenceManagerFactory PMF =
@@ -48,14 +48,14 @@ public final class SessionManager {
 	}
 	
 	public AccessToken getToken(Access access) throws ServiceException{
-		log.info("try to get token for " + access.getUid());
+		LOG.info("try to get token for " + access.getUid());
 		if(map.containsKey(access.getUid()) && 
 		   map.get(access.getUid()) != null && 
 		   map.get(access.getUid()).getToken() != null &&
 		   map.get(access.getUid()).getTokenSecret() != null) 
 			return map.get(access.getUid());
 		
-		log.info("no token in memory");
+		LOG.info("no token in memory");
 		String acc_token = (String) session.getAttribute(ClientConstants.ACC_TOKEN + "_" + access.getUid());
 		String acc_hash = (String) session.getAttribute(ClientConstants.ACC_SECRET + "_" + access.getUid());
 		
@@ -63,12 +63,12 @@ public final class SessionManager {
 		if(acc_token != null && acc_hash != null){
 			token = new AccessToken(acc_token, acc_hash);
 		}else{
-			log.info("no token in session");
+			LOG.info("no token in session");
 			if(!Security.isValid(access)){
 				return null;
 			}
 			
-			log.info("token in db");
+			LOG.info("token in db");
 			PersistenceManager pm = PMF.getPersistenceManager();
 			try{
 				Key k = KeyFactory.createKey(LocalAccessToken.class.getSimpleName(), access.getUid());
@@ -82,7 +82,7 @@ public final class SessionManager {
 				    }
 				}
 			}catch(JDOObjectNotFoundException e){
-				log.info("no token in db");
+				LOG.info("no token in db");
 			}
 			
 		}
@@ -92,7 +92,7 @@ public final class SessionManager {
 	}
 	
 	public String getScreenName(Access access) throws ServiceException{
-		log.info("try to get getScreenName");
+		LOG.info("try to get getScreenName");
 		String scName = (String) session.getAttribute(ClientConstants.SCREENNAME + "_" + access.getUid());
 		
 		AccessToken token = getToken(access);
@@ -117,7 +117,7 @@ public final class SessionManager {
 		if(token == null || uid.equals("")) 
 			return;
 		
-		log.info("store token to session");
+		LOG.info("store token to session");
 		session.setAttribute(ClientConstants.ACC_TOKEN + "_" + uid, token.getToken());
 		session.setAttribute(ClientConstants.ACC_SECRET + "_" + uid, token.getTokenSecret());
 		
@@ -125,23 +125,23 @@ public final class SessionManager {
 		LocalAccessToken acc = null;
 		try{
 			acc = (LocalAccessToken) pm.getObjectById(LocalAccessToken.class, uid);
-			log.info("token exist & changed");
+			LOG.info("token exist & changed");
 		}catch(JDOObjectNotFoundException e){
-			log.info("no token exist in db");
+			LOG.info("no token exist in db");
 		}
 		if(acc != null){
 			//update
 			acc.setToken(token.getToken());
 			acc.setPasshash(token.getTokenSecret());
 			pm.makePersistent(acc);
-			log.info("token succesfully updated");
+			LOG.info("token succesfully updated");
 		}else{
 	        LocalAccessToken la = new LocalAccessToken();
 	        la.setUser(uid);
 	        la.setToken(token.getToken());
 	        la.setPasshash(token.getTokenSecret());
 	        pm.makePersistent(la);
-	        log.info("token succesfully created");
+	        LOG.info("token succesfully created");
 		}
 		
 	}
@@ -162,9 +162,9 @@ public final class SessionManager {
 		try{
 			LocalAccessToken acc = (LocalAccessToken) pm.getObjectById(LocalAccessToken.class, acc2.getUid());
 			pm.deletePersistent(acc);
-			log.info("token deleted");
+			LOG.info("token deleted");
 		}catch(JDOObjectNotFoundException e){
-			log.info("no token exist in db, noting to delete");
+			LOG.info("no token exist in db, noting to delete");
 		}		
 		
 		session.removeAttribute(ClientConstants.ACC_TOKEN + "_" + acc2.getUid());

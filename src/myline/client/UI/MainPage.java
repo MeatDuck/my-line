@@ -54,7 +54,7 @@ public class MainPage extends Composite {
 	    dialogBox.setPopupPosition(120, 90);
 	    dialogBox.addStyleName("dialog");
 	    dialogBox.ensureDebugId("cwDialogBox");
-	    dialogBox.setText(ClientConstants.setDialogBoxCaption);
+	    dialogBox.setText(ClientConstants.SETTINGS_LABEL);
 
 	    // Create a table to layout the content
 	    SettingsPanel dialogContents = new SettingsPanel(dialogBox);

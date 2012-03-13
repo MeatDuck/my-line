@@ -126,7 +126,7 @@ public class SendTwitPanel extends Composite {
 	    // Create a dialog box and set the caption text
 	    final DialogBox dialogBox = new DialogBox();
 	    dialogBox.ensureDebugId("cwDialogBox");
-	    dialogBox.setText(ClientConstants.cwDialogBoxCaption);
+	    dialogBox.setText(ClientConstants.SHORT_LINKS_LABEL);
   
 	    AddLinkDialogPanel dialogContents = new AddLinkDialogPanel(dialogBox, this);
 	    dialogBox.setWidget(dialogContents);

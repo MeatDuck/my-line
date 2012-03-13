@@ -9,7 +9,7 @@ import myline.shared.exceptions.ServiceException;
 import myline.shared.security.Access;
 
 public class Security {
-	private static final Logger log = Logger.getLogger(Security.class.getName());
+	private static final Logger LOG = Logger.getLogger(Security.class.getName());
 	public static boolean isValid(Access acc) throws ServiceException {
 		if(acc == null){
 			throw new ServiceException("Bad vkontakte creditails, opened not in vkontakte");
@@ -18,7 +18,7 @@ public class Security {
 			throw new ServiceException("Bad vkontakte creditails, opened not in vkontakte");
 		}
 		
-		log.info("[" + acc.getUid().equals(SecurityConstants.NONPAS_USER) + ", " + acc.getSign().equals(SecurityConstants.NONPAS_SECRET_HASH) + "]");
+		LOG.info("[" + acc.getUid().equals(SecurityConstants.NONPAS_USER) + ", " + acc.getSign().equals(SecurityConstants.NONPAS_SECRET_HASH) + "]");
 		if(acc.getUid().equals(SecurityConstants.NONPAS_USER) && 
 		   acc.getSign().equals(SecurityConstants.NONPAS_SECRET_HASH)
 		   ){
@@ -30,10 +30,10 @@ public class Security {
 					return true;
 				}
 		//auth_key = md5(api_id + '_' + viewer_id + '_' + api_secret)
-		log.info("try to validate user = " + acc.getUid() + " with sign " + acc.getSign());
+		LOG.info("try to validate user = " + acc.getUid() + " with sign " + acc.getSign());
 		
 		final String createMD5 = createMD5(SecurityConstants.API_ID + "_" + acc.getUid() + "_" + SecurityConstants.API_SECRET);
-		log.info("md5 = " + createMD5);
+		LOG.info("md5 = " + createMD5);
 		if(createMD5.equals(acc.getSign())){
 			return true;
 		}

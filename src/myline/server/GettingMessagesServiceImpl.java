@@ -38,7 +38,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		GettingService {
 
 	private static final long serialVersionUID = 3625750779791025487L;
-	private static final Logger log = Logger.getLogger(RemoteServiceServlet.class.getName());
+	private static final Logger LOG = Logger.getLogger(RemoteServiceServlet.class.getName());
 
 	@Override
 	public MessageContaner getMessages(Access acc) throws ServiceException {
@@ -47,17 +47,17 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public MessageContaner getMessages(Access acc, Integer page)	throws ServiceException {
-		log.info("getMessages started");
+		LOG.info("getMessages started");
 		AccessToken token = SessionManager.setRequest(getThreadLocalRequest()).getToken(acc);
 		if(token == null){
 			return new MessageContaner();
 		}
 			
 		Twitter twitter = new TwitterFactory().getInstance(token);
-	    log.info("=============================");
-		log.info("AccessToken.getToken = " + token.getToken());	
-		log.info("AccessToken.getTokenSecret = " + token.getTokenSecret());	
-		log.info("==============================");
+	    LOG.info("=============================");
+		LOG.info("AccessToken.getToken = " + token.getToken());	
+		LOG.info("AccessToken.getTokenSecret = " + token.getTokenSecret());	
+		LOG.info("==============================");
 		ArrayList<Status> statuses = null;
 		
 		try {
@@ -106,7 +106,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			RequestToken requestToken = twitter.getOAuthRequestToken();
 			session.setAttribute(ClientConstants.REQUEST_TOKEN, requestToken.getToken());
 			session.setAttribute(ClientConstants.REQUEST_HASH, requestToken.getTokenSecret());
-			log.info("try save RequestToken to session = " + session.getAttribute(ClientConstants.REQUEST_TOKEN) + " & hash = " + session.getAttribute(ClientConstants.REQUEST_HASH));
+			LOG.info("try save RequestToken to session = " + session.getAttribute(ClientConstants.REQUEST_TOKEN) + " & hash = " + session.getAttribute(ClientConstants.REQUEST_HASH));
 			contaner.setUrl(requestToken.getAuthorizationURL());
 		}catch(TwitterException e){
 			throw new ServiceException(e);
@@ -116,13 +116,13 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public Boolean isAuth(Access vkToken) throws ServiceException {
-		log.info("isAuth started with token = " + vkToken + " & uid = " + vkToken.getUid());
+		LOG.info("isAuth started with token = " + vkToken + " & uid = " + vkToken.getUid());
 		
 		//check if already auth & try to verify
 		HttpSession session = getThreadLocalRequest().getSession(true);		 
 		AccessToken tok = SessionManager.setRequest(getThreadLocalRequest()).getToken(vkToken);
 		if(tok != null){
-			log.info("token is exist");
+			LOG.info("token is exist");
 			Twitter tw = new TwitterFactory().getInstance(tok);
 			try {
 				tw.verifyCredentials();
@@ -134,13 +134,13 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		
 		//check try to reauth
 		AccessToken accessToken = null;		
-		log.info("try to reauth");
+		LOG.info("try to reauth");
 		try {
 			SessionManager.setRequest(getThreadLocalRequest()).resetScreenName(vkToken);
-			log.info("try to getOAuthAccessToken");
+			LOG.info("try to getOAuthAccessToken");
 			String rt = (String) session.getAttribute(ClientConstants.REQUEST_TOKEN);
 			String sec = (String) session.getAttribute(ClientConstants.REQUEST_HASH);
-			log.info("try RequestToken from session = " + rt + " & sec " + sec);
+			LOG.info("try RequestToken from session = " + rt + " & sec " + sec);
 			if(rt == null || sec == null){
 				return false;
 			}
@@ -154,7 +154,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 				twitter.setOAuthConsumer(System.getProperty("oauth.consumerKey"), System.getProperty("oauth.consumerSecret"));
 			}
 			accessToken = twitter.getOAuthAccessToken(rtObj);
-			log.info("accessToken = " + accessToken.getToken());
+			LOG.info("accessToken = " + accessToken.getToken());
 		} catch (TwitterException e) {
 			return false;
 		} catch (IllegalStateException e) {
@@ -166,7 +166,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void sendMessage(Access acc, String txt) throws ServiceException {
-		log.info("sendMessage started");
+		LOG.info("sendMessage started");
 		AccessToken token = SessionManager.setRequest(getThreadLocalRequest()).getToken(acc);
 		Twitter twitter = new TwitterFactory().getInstance(token);	
 		
@@ -178,7 +178,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public void deleteStatus(Access acc, String statusId) throws ServiceException{
-		log.info("deletestatus started");
+		LOG.info("deletestatus started");
 		AccessToken token = SessionManager.setRequest(getThreadLocalRequest()).getToken(acc);
 		Twitter twitter = new TwitterFactory().getInstance(token);
 		try {
@@ -191,7 +191,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	}
 
 	public String takeShortLink(String str) {
-		log.info("tru to get shorl link for " + str);
+		LOG.info("tru to get shorl link for " + str);
 		if(str == null || str.isEmpty()){
 			return str;
 		}
@@ -209,7 +209,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	public int getStatusNumber(Access acc) throws ServiceException{
-		log.info("getStatusNumber started");
+		LOG.info("getStatusNumber started");
 		AccessToken token = SessionManager.setRequest(getThreadLocalRequest()).getToken(acc);
 		Twitter twitter = new TwitterFactory().getInstance(token);
 		
@@ -236,7 +236,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			throw new ServiceException("Bad page numer");
 		}
 		
-		log.info("getAllMessages started");
+		LOG.info("getAllMessages started");
 		AccessToken token = SessionManager.setRequest(getThreadLocalRequest()).getToken(acc);
 		Twitter twitter = new TwitterFactory().getInstance(token);
 		

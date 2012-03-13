@@ -1,18 +1,18 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:import field='myline.shared.ClientConstants.setDialogBoxDetails'/>
-	<ui:import field='myline.shared.ClientConstants.setCheckBoxDetails'/>	
-	<ui:import field='myline.shared.ClientConstants.sytDialogCook'/>
-	<ui:import field='myline.shared.ClientConstants.cwDialogBoxClose'/>	
+	<ui:import field='myline.shared.ClientConstants.STATUS_SETTINGS_LABEL'/>
+	<ui:import field='myline.shared.ClientConstants.SEND_STATUS_TOWALL'/>	
+	<ui:import field='myline.shared.ClientConstants.TURN_ON_COOKIES'/>
+	<ui:import field='myline.shared.ClientConstants.OK_LABEL'/>	
 	<ui:import field='myline.shared.ClientConstants.LOGOUT_LABEL'/>	
 	
 	<g:VerticalPanel spacing="4">
-		<g:InlineLabel text="{setDialogBoxDetails}" title="{setDialogBoxDetails}" horizontalAlignment="ALIGN_LEFT"/>
-		<g:CheckBox text="{setCheckBoxDetails}" ui:field="sendToWallChb"/>
-		<g:InlineLabel text="{sytDialogCook}" horizontalAlignment="ALIGN_LEFT" ui:field="askCookieLabel"/>
+		<g:InlineLabel text="{STATUS_SETTINGS_LABEL}" title="{STATUS_SETTINGS_LABEL}" horizontalAlignment="ALIGN_LEFT"/>
+		<g:CheckBox text="{SEND_STATUS_TOWALL}" ui:field="sendToWallChb"/>
+		<g:InlineLabel text="{TURN_ON_COOKIES}" horizontalAlignment="ALIGN_LEFT" ui:field="askCookieLabel"/>
 		<g:Cell horizontalAlignment="ALIGN_RIGHT">
-			<g:Button ui:field="closeButton" text="{cwDialogBoxClose}"/>
+			<g:Button ui:field="closeButton" text="{OK_LABEL}"/>
 		</g:Cell>
 	</g:VerticalPanel>
 </ui:UiBinder> 
