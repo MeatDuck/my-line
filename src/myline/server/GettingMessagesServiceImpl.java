@@ -161,8 +161,10 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		} catch (IllegalStateException e) {
 			throw new ServiceException(e);
 		}
+		
+		ConnectionManager manager = new ConnectionManager();
 
-		return ConnectionManager.getInstance().isAuth(accessToken, vkToken.getUid(), getThreadLocalRequest());
+		return manager.isAuth(accessToken, vkToken.getUid(), getThreadLocalRequest());
 	}
 
 	@Override
