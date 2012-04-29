@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="My line" default="build" basedir=".">
   <!-- Configure path to GWT SDK -->
-  <property name="gwt.sdk" location="/home/main/.eclipse/org.eclipse.platform_3.5.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle.2.1.0_2.1.0.v201010280047/gwt-2.1.0" />
-  <property name="appengine.sdk" location="/home/main/workspace/appengine-java-sdk-1.4.2" />
+  <property name="gwt.sdk" location="D:\eclipse\plugins\com.google.gwt.eclipse.sdkbundle_2.4.0.v201203300216-rel-r37\gwt-2.4.0" />
+  <property name="appengine.sdk" location="D:\eclipse\plugins\com.google.appengine.eclipse.sdkbundle_1.6.4.v201203300216r37\appengine-java-sdk-1.6.4" />
   <import file="${appengine.sdk}/config/user/ant-macros.xml" />
   
 	<condition property="XstartOnFirstThread" value="-XstartOnFirstThread">
@@ -170,6 +170,64 @@
 	        <arg value="logs.txt"/>
 	      </args>
 	    </appcfg>
+	  </target>
+	
+	  <target name="javac.tests" depends="javac" description="Compiles test code">
+	    <javac includeantruntime="false" srcdir="test" includes="**" encoding="utf-8"
+	      source="1.6" target="1.6" nowarn="true"
+	      debug="true" debuglevel="lines,vars,source">
+	      <classpath location="C:\Documents and Settings\main\workspace\My line\lib\junit-4.10.jar"/>
+	      <classpath refid="project.class.path"/>
+	    </javac>
+	  </target>
+	  
+	  <target name="test.dev" depends="javac.tests" description="Run development mode tests">
+	    <mkdir dir="reports/htmlunit.dev" />
+	    <junit fork="yes" printsummary="yes" haltonfailure="yes">
+	      <jvmarg line="-Xmx256m" />
+	      <sysproperty key="gwt.args" value="-logLevel WARN" />
+	      <sysproperty key="java.awt.headless" value="true" />
+	      <classpath>
+	      	<pathelement location="src" />
+	      	<pathelement location="test" />
+	        <path refid="project.class.path" />
+	        <pathelement location="path_to_the_junit_jar" />
+	      </classpath>
+	      <batchtest todir="reports/htmlunit.dev" >
+	        <fileset dir="test" >
+	          <include name="**/*Test.java" />
+	        </fileset>
+	      </batchtest>
+	      <formatter type="plain" />
+	      <formatter type="xml" />
+	    </junit>
+	  </target>
+
+	  <target name="test.prod" depends="javac.tests" description="Run production mode tests">
+	    <mkdir dir="reports/htmlunit.prod" />
+	    <junit fork="yes" printsummary="yes" haltonfailure="yes">
+	      <jvmarg line="-Xmx256m" />
+	      <sysproperty key="gwt.args" value="-prod -logLevel WARN -out www-test" />
+	      <sysproperty key="java.awt.headless" value="true" />
+	      <classpath>
+	        <pathelement location="src" />
+	        <pathelement location="test" />
+	        <path refid="project.class.path" />
+	        <pathelement location="path_to_the_junit_jar" />
+	      </classpath>
+	      <batchtest todir="reports/htmlunit.prod" >
+	        <fileset dir="test" >
+	          <include name="**/*Test.java" />
+	        </fileset>
+	      </batchtest>
+	      <formatter type="plain" />
+	      <formatter type="xml" />
+	    </junit>
+	  </target>
+
+	  <target name="test" description="Run development and production mode tests">
+	    <antcall target="test.dev" />
+	    <antcall target="test.prod" />
 	  </target>
 	
 </project>
