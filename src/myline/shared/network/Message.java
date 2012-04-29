@@ -14,7 +14,7 @@ public class Message  implements IsSerializable {
 	private Date date;
 	
 	public Message(){
-		
+
 	}
 	
 	public void setNick(String nick) {

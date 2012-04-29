@@ -61,11 +61,11 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		ArrayList<Status> statuses = null;
 		
 		try {
-			if(page != null){
-			Paging pageing = new Paging(page);
-			statuses = new ArrayList<Status>(twitter.getFriendsTimeline(pageing));
-			}else{
+			if(page == null){
 				statuses = new ArrayList<Status>(twitter.getFriendsTimeline());
+			}else{
+				Paging pageing = new Paging(page);
+				statuses = new ArrayList<Status>(twitter.getFriendsTimeline(pageing));
 			}
 		} catch (TwitterException e) {
 			throw new ServiceException(e);
@@ -78,7 +78,8 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		for (Iterator<Status> iterator = statuses.iterator(); iterator.hasNext();) {
 			Status status = (Status) iterator.next();
 			boolean isEditable = false;
-			if(svName != null && status.getUser().getScreenName().equals(svName)){
+			String screenName = status.getUser().getScreenName();
+			if(svName != null && screenName != null && screenName.equals(svName)){
 				isEditable = true;
 			}
 			contaner.addMessage(
@@ -123,9 +124,9 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		AccessToken tok = SessionManager.setRequest(getThreadLocalRequest()).getToken(vkToken);
 		if(tok != null){
 			LOG.info("token is exist");
-			Twitter tw = new TwitterFactory().getInstance(tok);
+			Twitter twitter = new TwitterFactory().getInstance(tok);
 			try {
-				tw.verifyCredentials();
+				twitter.verifyCredentials();
 				return true;
 			} catch (Exception e) {
 				throw new ServiceException(e);
@@ -138,14 +139,14 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		try {
 			SessionManager.setRequest(getThreadLocalRequest()).resetScreenName(vkToken);
 			LOG.info("try to getOAuthAccessToken");
-			String rt = (String) session.getAttribute(ClientConstants.REQUEST_TOKEN);
-			String sec = (String) session.getAttribute(ClientConstants.REQUEST_HASH);
-			LOG.info("try RequestToken from session = " + rt + " & sec " + sec);
-			if(rt == null || sec == null){
+			String requestToken = (String) session.getAttribute(ClientConstants.REQUEST_TOKEN);
+			String requestHash = (String) session.getAttribute(ClientConstants.REQUEST_HASH);
+			LOG.info("try RequestToken from session = " + requestToken + " & sec " + requestHash);
+			if(requestToken == null || requestHash == null){
 				return false;
 			}
 			
-			RequestToken rtObj = new RequestToken(rt, sec);
+			RequestToken rtObj = new RequestToken(requestToken, requestHash);
 			session.removeAttribute(ClientConstants.REQUEST_TOKEN);
 			session.removeAttribute(ClientConstants.REQUEST_HASH);
 			//!!!!
@@ -202,7 +203,6 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		}
 		//check url
 		
-		
 		Provider bitly = Bitly.as(SecurityConstants.SHORT_API_LOGIN, SecurityConstants.SHORT_API_KEY);
 		Url newUrl = bitly.call(shorten(str));
 		return newUrl.getShortUrl();		
@@ -220,10 +220,10 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		} 
 	}
 	
-    private static boolean isMatch(String s, String pattern) {
+    private static boolean isMatch(String str, String pattern) {
         try {
             Pattern patt = Pattern.compile(pattern);
-            Matcher matcher = patt.matcher(s);
+            Matcher matcher = patt.matcher(str);
             return matcher.matches();
         } catch (RuntimeException e) {
         	return false;
@@ -249,10 +249,12 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 				statuses.addAll(new ArrayList<Status>(twitter.getUserTimeline(pageing)));
 				page++;
 				pageing = new Paging(page);
-				if(statuses.size() >= numMessage) break;
+				if(statuses.size() >= numMessage) {
+					break;
+				}
 			}
-		} catch (Exception e) {
-			//do nothing
+		} catch (Exception exception) {
+			LOG.info(exception.getMessage());
 		}
 		Integer numLimit = Math.min(numMessage, statuses.size());
 		
@@ -283,6 +285,11 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void logOut(Access acc) throws ServiceException {
 		SessionManager.setRequest(getThreadLocalRequest()).logout(acc);		
+	}
+
+	@Override
+	public void logError(String exception) {
+		LOG.info(exception);
 	}
 
 }

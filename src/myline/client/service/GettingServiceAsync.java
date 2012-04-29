@@ -29,4 +29,6 @@ public interface GettingServiceAsync {
 
 	void logOut(Access acc, AsyncCallback<Void> asyncCallback);
 
+	void logError(String exception, AsyncCallback<Void> callback);
+
 }

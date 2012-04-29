@@ -3,7 +3,11 @@ package myline.shared;
 
 //oauth_token=aR9sowYtyAmMZaNtwKOdLZEdTuSRv6IxvFyDVKCut8
 //http://127.0.0.1:8888/My_line.html?gwt.codesvr=127.0.0.1:9997
-public class ClientConstants {
+final public class ClientConstants {
+	private ClientConstants(){
+		
+	}
+	
 	//lang
 	public static final String SERVER_ERROR = "An error occurred while "
 		+ "attempting to contact the server. Please check your network "

@@ -13,29 +13,31 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class My_line implements EntryPoint {
-	private Access access = null;
-	
+public class My_line implements EntryPoint {	
+	private static final String SENDTOWALL = "sendtowall";
+
 	public void onModuleLoad() {
+		Access access = null;
+		
 		//Get params  from request
-		String user_id = Window.Location.getParameter("viewer_id");
-		String auth_key = Window.Location.getParameter("auth_key");
+		final String user_id = Window.Location.getParameter("viewer_id");
+		final String auth_key = Window.Location.getParameter("auth_key");
 				
 		access = new Access(user_id, auth_key);
 		Registry.getInctance().setKey("access", access);
 
-		if(Cookies.getCookie("sendtowall") != null){
-			Registry.getInctance().setKey("sendtowall", Cookies.getCookie("sendtowall").equals("true"));
+		if(Cookies.getCookie(SENDTOWALL) == null){
+			Registry.getInctance().setKey(SENDTOWALL, true);			
 		}else{
-			Registry.getInctance().setKey("sendtowall", true);
+			Registry.getInctance().setKey(SENDTOWALL, Cookies.getCookie(SENDTOWALL).equals("true"));
 		}
 		DecorationManager.getInstance().showLoading();		
 
-		GettingServiceAsync custService = (GettingServiceAsync) GWT.create(GettingService.class);
+		final GettingServiceAsync custService = (GettingServiceAsync) GWT.create(GettingService.class);
 		custService.isAuth(access, new AsyncCallback<Boolean>() {
 			
 			@Override
-			public void onSuccess(Boolean result) {
+			public void onSuccess(final Boolean result) {
 				if(result){
 					DecorationManager.getInstance().showMain();					
 				}else {
@@ -44,7 +46,7 @@ public class My_line implements EntryPoint {
 			}
 			
 			@Override
-			public void onFailure(Throwable caught) {
+			public void onFailure(final Throwable caught) {
 				DecorationManager.getInstance().showError(caught);
 			}
 		});

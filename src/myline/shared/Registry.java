@@ -1,9 +1,10 @@
 package myline.shared;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public final class Registry {
-	private HashMap<Object, Object> storage = new HashMap<Object, Object>();
+	final private Map<Object, Object> storage = new HashMap<Object, Object>();
 	private static Registry instance;
 	
 	private Registry(){};

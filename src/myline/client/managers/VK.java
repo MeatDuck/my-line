@@ -1,6 +1,10 @@
 package myline.client.managers;
 
-public class VK {
+final public class VK {
+	
+	private VK(){
+		
+	}
 
 	public static native void sendToWall(String user, String txt)/*-{
         	$wnd.sendMessage(user, txt);

@@ -10,6 +10,7 @@ import myline.shared.security.Access;
 
 public class Security {
 	private static final Logger LOG = Logger.getLogger(Security.class.getName());
+	
 	public static boolean isValid(Access acc) throws ServiceException {
 		if(acc == null){
 			throw new ServiceException("Bad vkontakte creditails, opened not in vkontakte");
@@ -45,16 +46,16 @@ public class Security {
 	       String output = null;
 	       try
 	       {
-	           MessageDigest md;
-	           md = MessageDigest.getInstance("MD5");
-	           md.update(raw.getBytes(), 0, raw.length());
-	           output = new BigInteger(1, md.digest()).toString(16);
+	           MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+	           messageDigest.update(raw.getBytes(), 0, raw.length());
+	           output = new BigInteger(1, messageDigest.digest()).toString(16);
 	       }
 	       catch (NoSuchAlgorithmException e)
 	       {
-	           e.printStackTrace();
+	    	   LOG.info(e.getMessage());
 	       }
 	       return output;
 	   }
 
+	
 }

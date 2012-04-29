@@ -28,4 +28,6 @@ public interface GettingService extends RemoteService {
 	int getStatusNumber(Access acc) throws ServiceException;
 	
 	void logOut(Access acc) throws ServiceException;
+	
+	void logError(String exception);
 }

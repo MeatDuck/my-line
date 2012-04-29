@@ -24,8 +24,9 @@ public final class ConnectionManager {
 
 	public Boolean isAuth(AccessToken token, String uid, HttpServletRequest request) {
 		LOG.info("AccessToken if null?  " + token);
-		if(token == null)
+		if(token == null){
 			return false;
+		}	
 		SessionManager.setRequest(request).setToken(token,uid);
 		return true;
 	}
