@@ -13,6 +13,7 @@ import myline.client.service.GettingService;
 import myline.client.service.GettingServiceAsync;
 import myline.shared.ClientConstants;
 import myline.shared.Registry;
+import myline.shared.Utils;
 import myline.shared.network.MessageContaner;
 import myline.shared.network.Message;
 import myline.shared.network.UrlContaner;
@@ -140,10 +141,8 @@ public final class DecorationManager {
 	}-*/;
 
 	public void showError(Throwable exception){
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		PrintStream out = new PrintStream(os);
-		exception.printStackTrace(out);
-		String output = os.toString();
+		Utils utils = new Utils();
+		String output = utils.getCustomStackTrace(exception);
 		custService.logError(output, new AsyncCallback<Void>(){
 			@Override
 			public void onFailure(Throwable caught) {}
