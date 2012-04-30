@@ -43,18 +43,18 @@ public class Security {
 	
 	public static String createMD5(String raw)
 	   {
-	       String output = null;
+		  BigInteger output = null;
 	       try
 	       {
 	           MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 	           messageDigest.update(raw.getBytes(), 0, raw.length());
-	           output = new BigInteger(1, messageDigest.digest()).toString(16);
+	           output = new BigInteger(1, messageDigest.digest());
 	       }
 	       catch (NoSuchAlgorithmException e)
 	       {
 	    	   LOG.info(e.getMessage());
 	       }
-	       return output;
+	       return String.format("%1$032x", output);
 	   }
 
 	

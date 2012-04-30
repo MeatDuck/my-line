@@ -291,7 +291,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void logError(String exception) {
-		LOG.info(exception);
+		LOG.severe(exception);
 	}
 
 }
