@@ -26,6 +26,7 @@ import twitter4j.auth.AccessToken;
 public final class SessionManager {
 	private static final Logger LOG = Logger.getLogger(SessionManager.class.getName());
 	private static SessionManager instance = null;
+	private Security security = new Security();
 	public HttpSession session = null;
 	private static final PersistenceManagerFactory PMF =
 	      JDOHelper.getPersistenceManagerFactory("transactions-optional");
@@ -64,7 +65,7 @@ public final class SessionManager {
 			token = new AccessToken(acc_token, acc_hash);
 		}else{
 			LOG.info("no token in session");
-			if(!Security.isValid(access)){
+			if(!security.isValid(access)){
 				return null;
 			}
 			
@@ -153,23 +154,23 @@ public final class SessionManager {
 		return instance;
 	}
 
-	public void logout(Access acc2) throws ServiceException {
-		if(!Security.isValid(acc2)){
+	public void logout(Access accessToken) throws ServiceException {
+		if(!security.isValid(accessToken)){
 			throw new ServiceException(ClientConstants.TOKEN_ERROR);
 		}
 		
 		PersistenceManager pm = PMF.getPersistenceManager();
 		try{
-			LocalAccessToken acc = (LocalAccessToken) pm.getObjectById(LocalAccessToken.class, acc2.getUid());
+			LocalAccessToken acc = (LocalAccessToken) pm.getObjectById(LocalAccessToken.class, accessToken.getUid());
 			pm.deletePersistent(acc);
 			LOG.info("token deleted");
 		}catch(JDOObjectNotFoundException e){
 			LOG.info("no token exist in db, noting to delete");
 		}		
 		
-		session.removeAttribute(ClientConstants.ACC_TOKEN + "_" + acc2.getUid());
-		session.removeAttribute(ClientConstants.ACC_SECRET + "_" + acc2.getUid());
+		session.removeAttribute(ClientConstants.ACC_TOKEN + "_" + accessToken.getUid());
+		session.removeAttribute(ClientConstants.ACC_SECRET + "_" + accessToken.getUid());
 		
-		this.map.remove(acc2.getUid());
+		this.map.remove(accessToken.getUid());
 	}
 }

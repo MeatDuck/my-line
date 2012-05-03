@@ -11,7 +11,7 @@ import myline.shared.security.Access;
 public class Security {
 	private static final Logger LOG = Logger.getLogger(Security.class.getName());
 	
-	public static boolean isValid(Access acc) throws ServiceException {
+	public boolean isValid(Access acc) throws ServiceException {
 		if(acc == null){
 			throw new ServiceException("Bad vkontakte creditails, opened not in vkontakte");
 		}
@@ -41,7 +41,7 @@ public class Security {
 		throw new ServiceException("Bad vkontakte creditails");
 	}
 	
-	public static String createMD5(String raw)
+	public String createMD5(String raw)
 	   {
 		  BigInteger output = null;
 	       try
