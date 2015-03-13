@@ -24,4 +24,6 @@
   <admin-console>
 		<page name="Add message" url="/spam.jsp" />
   </admin-console>
+  
+  <threadsafe>true</threadsafe>
 </appengine-web-app>

@@ -62,10 +62,10 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		
 		try {
 			if(page == null){
-				statuses = new ArrayList<Status>(twitter.getFriendsTimeline());
+				statuses = new ArrayList<Status>(twitter.getUserTimeline());
 			}else{
 				Paging pageing = new Paging(page);
-				statuses = new ArrayList<Status>(twitter.getFriendsTimeline(pageing));
+				statuses = new ArrayList<Status>(twitter.getUserTimeline(pageing));
 			}
 		} catch (TwitterException e) {
 			throw new ServiceException(e);
