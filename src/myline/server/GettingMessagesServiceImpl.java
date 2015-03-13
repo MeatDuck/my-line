@@ -5,9 +5,7 @@ import static com.rosaloves.bitlyj.Bitly.shorten;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.google.appengine.api.log.*;
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +40,9 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 
 	private static final long serialVersionUID = 3625750779791025487L;
 	private static Logger LOG=Logger.getLogger(GettingMessagesServiceImpl.class.toString());
+	static {
+	    LOG.setLevel(Level.INFO);	    
+	}
 
 	@Override
 	public MessageContaner getMessages(Access acc) throws ServiceException {
@@ -110,6 +111,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			RequestToken requestToken = twitter.getOAuthRequestToken();
 			session.setAttribute(ClientConstants.REQUEST_TOKEN, requestToken.getToken());
 			session.setAttribute(ClientConstants.REQUEST_HASH, requestToken.getTokenSecret());
+			
 			LOG.info("try save RequestToken to session = " + session.getAttribute(ClientConstants.REQUEST_TOKEN) + " & hash = " + session.getAttribute(ClientConstants.REQUEST_HASH));
 			contaner.setUrl(requestToken.getAuthorizationURL());
 		}catch(TwitterException e){
@@ -119,7 +121,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public Boolean isAuth(Access vkToken) throws ServiceException {
+	public Boolean isAuth(Access vkToken, String oauth_verifier) throws ServiceException {
 		LOG.info("isAuth started with token = " + vkToken + " & uid = " + vkToken.getUid());
 		
 		//check if already auth & try to verify
@@ -157,7 +159,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			if (!(twitter.getAuthorization() instanceof OAuthAuthorization)){
 				twitter.setOAuthConsumer(System.getProperty("oauth.consumerKey"), System.getProperty("oauth.consumerSecret"));
 			}
-			accessToken = twitter.getOAuthAccessToken(rtObj);
+			accessToken = twitter.getOAuthAccessToken(rtObj, oauth_verifier);
 			LOG.info("accessToken = " + accessToken.getToken());
 		} catch (TwitterException e) {
 			return false;

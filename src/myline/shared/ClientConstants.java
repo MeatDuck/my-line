@@ -22,8 +22,8 @@ final public class ClientConstants {
 	public static final String OK_LABEL = "OK";
 	public static final String GET_SHORT_URL = "Получить короткую ссылку";
 	public static final String SYN_LABEL = "Синхронизация";
-	public static final String SETTINGS_LABEL = "Настройки";
-	public static final String STATUS_SETTINGS_LABEL = "Настройки статусов";
+	public static final String SET_LABEL = "Настройки";
+	public static final String STATUS_SET_LABEL = "Настройки статусов";
 	public static final String SEND_STATUS_TOWALL = "Отправлять статус на стену";
 	public static final String TURN_ON_COOKIES = "Включите cookies в вашем браузере";
 	public static final String UPDATE_LINE_ERROR_MESSAGE = "Ошибка загрузки твитов";
@@ -39,6 +39,8 @@ final public class ClientConstants {
 	//const for def
 	public static final String REQUEST_TOKEN = "rt";
 	public static final String REQUEST_HASH = "sec";
+	public static final String REQUEST_VERIFIER = "oauth_verifier";
+	
 	public static final String ACC_TOKEN = "acctoken";
 	public static final String ACC_SECRET = "acchash";
 	public static final String SCREENNAME = "SCNAME";

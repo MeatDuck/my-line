@@ -14,7 +14,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -25,7 +24,6 @@ public class MainPage extends Composite {
 
 	private static MainPageUiBinder uiBinder = GWT
 			.create(MainPageUiBinder.class);
-	@UiField Button settingsButton;
 	@UiField SendTwitPanel sendTwitPanel;
 	@UiField public FlowPanel twitItems;
 	@UiField ErrorNotificationMole errorNotificationPanel;
@@ -54,7 +52,7 @@ public class MainPage extends Composite {
 	    dialogBox.setPopupPosition(120, 90);
 	    dialogBox.addStyleName("dialog");
 	    dialogBox.ensureDebugId("cwDialogBox");
-	    dialogBox.setText(ClientConstants.SETTINGS_LABEL);
+	    dialogBox.setText(ClientConstants.SET_LABEL);
 
 	    // Create a table to layout the content
 	    SettingsPanel dialogContents = new SettingsPanel(dialogBox);

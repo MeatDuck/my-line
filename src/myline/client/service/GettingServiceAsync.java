@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public interface GettingServiceAsync {
 	void getInitiationURL(AsyncCallback<UrlContaner> asyncCallback);
 
-	void isAuth(Access acc,
+	void isAuth(Access vkToken, String oauth_verifier,
 			AsyncCallback<Boolean> callback);
 
 	void getMessages(Access acc, AsyncCallback<MessageContaner> callback);
