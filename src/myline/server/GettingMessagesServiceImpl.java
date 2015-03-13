@@ -5,6 +5,9 @@ import static com.rosaloves.bitlyj.Bitly.shorten;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.appengine.api.log.*;
+
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,7 +41,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		GettingService {
 
 	private static final long serialVersionUID = 3625750779791025487L;
-	private static final Logger LOG = Logger.getLogger(RemoteServiceServlet.class.getName());
+	private static Logger LOG=Logger.getLogger(GettingMessagesServiceImpl.class.toString());
 
 	@Override
 	public MessageContaner getMessages(Access acc) throws ServiceException {
