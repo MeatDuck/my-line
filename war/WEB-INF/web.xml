@@ -8,10 +8,18 @@
     <servlet-name>gettingServlet</servlet-name>
     <servlet-class>myline.server.GettingMessagesServiceImpl</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>redirectServlet</servlet-name>
+    <servlet-class>myline.server.RedirectServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>gettingServlet</servlet-name>
     <url-pattern>/my_line/get</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>redirectServlet</servlet-name>
+    <url-pattern>/my_line/redirect</url-pattern>
   </servlet-mapping>
   
 <servlet>

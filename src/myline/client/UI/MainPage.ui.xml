@@ -12,7 +12,7 @@
 		</g:VerticalPanel>
 		<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" width="497px" height="29px">
 			<g:Cell horizontalAlignment="ALIGN_RIGHT">
-				<g:Button ui:field="settingsButton" text="{SET_LABEL}" title="{SET_LABEL}" styleName="gwt-Button settings"/>
+				<g:Button text="Настройки" title="Настройки" styleName="gwt-Button settings" ui:field="settingsButton"/>
 			</g:Cell>
 		</g:HorizontalPanel>
 		<p1:SendTwitPanel ui:field="sendTwitPanel"/>		

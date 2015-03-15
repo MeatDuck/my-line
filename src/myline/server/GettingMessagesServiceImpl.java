@@ -66,10 +66,10 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		
 		try {
 			if(page == null){
-				statuses = new ArrayList<Status>(twitter.getUserTimeline());
+				statuses = new ArrayList<Status>(twitter.getHomeTimeline());
 			}else{
 				Paging pageing = new Paging(page);
-				statuses = new ArrayList<Status>(twitter.getUserTimeline(pageing));
+				statuses = new ArrayList<Status>(twitter.getHomeTimeline(pageing));
 			}
 		} catch (TwitterException e) {
 			throw new ServiceException(e);
@@ -121,7 +121,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public Boolean isAuth(Access vkToken, String oauth_verifier) throws ServiceException {
+	public Boolean isAuth(Access vkToken) throws ServiceException {
 		LOG.info("isAuth started with token = " + vkToken + " & uid = " + vkToken.getUid());
 		
 		//check if already auth & try to verify
@@ -146,7 +146,8 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			LOG.info("try to getOAuthAccessToken");
 			String requestToken = (String) session.getAttribute(ClientConstants.REQUEST_TOKEN);
 			String requestHash = (String) session.getAttribute(ClientConstants.REQUEST_HASH);
-			LOG.info("try RequestToken from session = " + requestToken + " & sec " + requestHash);
+            String oauth_verifier = (String) session.getAttribute(ClientConstants.REQUEST_VERIFIER);
+            LOG.info("try RequestToken from session = " + requestToken + " & sec " + requestHash + " & oauth_verifier " + oauth_verifier);
 			if(requestToken == null || requestHash == null){
 				return false;
 			}
@@ -159,7 +160,11 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 			if (!(twitter.getAuthorization() instanceof OAuthAuthorization)){
 				twitter.setOAuthConsumer(System.getProperty("oauth.consumerKey"), System.getProperty("oauth.consumerSecret"));
 			}
-			accessToken = twitter.getOAuthAccessToken(rtObj, oauth_verifier);
+			if (oauth_verifier != null) {
+			    accessToken = twitter.getOAuthAccessToken(rtObj, oauth_verifier);
+			} else {
+			    accessToken = twitter.getOAuthAccessToken(rtObj);
+			}
 			LOG.info("accessToken = " + accessToken.getToken());
 		} catch (TwitterException e) {
 			return false;
@@ -253,7 +258,7 @@ public class GettingMessagesServiceImpl extends RemoteServiceServlet implements
 		
 		try {		
 			for(int i = 0; i <= 3; i++){
-				statuses.addAll(new ArrayList<Status>(twitter.getUserTimeline(pageing)));
+				statuses.addAll(new ArrayList<Status>(twitter.getHomeTimeline(pageing)));
 				page++;
 				pageing = new Paging(page);
 				if(statuses.size() >= numMessage) {

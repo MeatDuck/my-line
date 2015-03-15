@@ -17,7 +17,7 @@ public interface GettingService extends RemoteService {
 	
 	UrlContaner getInitiationURL() throws ServiceException;
 	
-	Boolean isAuth(Access vkToken, String oauth_verifier) throws ServiceException;
+	Boolean isAuth(Access vkToken) throws ServiceException;
 	
 	void sendMessage(Access acc, String txt) throws ServiceException;
 	

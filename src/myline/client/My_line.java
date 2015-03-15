@@ -22,7 +22,6 @@ public class My_line implements EntryPoint {
 		//Get params  from request
 		final String user_id = Window.Location.getParameter("viewer_id");
 		final String auth_key = Window.Location.getParameter("auth_key");
-		final String oauth_verifier = Window.Location.getParameter("oauth_verifier");
 				
 		access = new Access(user_id, auth_key);
 		Registry.getInctance().setKey("access", access);
@@ -35,7 +34,7 @@ public class My_line implements EntryPoint {
 		DecorationManager.getInstance().showLoading();		
 
 		final GettingServiceAsync custService = (GettingServiceAsync) GWT.create(GettingService.class);
-		custService.isAuth(access, oauth_verifier, new AsyncCallback<Boolean>() {
+		custService.isAuth(access, new AsyncCallback<Boolean>() {
 			
 			@Override
 			public void onSuccess(final Boolean result) {
